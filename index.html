@@ -448,22 +448,22 @@
             <p><b>A Short Announcement</b></p>
             <p>You can buy Short Trip to own on Steam from December 11th. This standalone version includes a new 'scheduled' mode, plus some extra bonus features. Thanks for your support!</p>
             <iframe src="https://store.steampowered.com/widget/3187700/" frameborder="0" width="512" height="190" style="max-width:100%" "></iframe>
-            <div id="continue ">
+            <div id="continue">
                 <p>Play Web Version</p>
             </div>
         </div>
     </div>
-    <div id="loader ">
-        <div class="label ">
-            <span id="loader-content ">Loading ~
-                <span id="loading-message ">Code</span> ~
-                <span id="loading-percent "></span>
+    <div id="loader">
+        <div class="label">
+            <span id="loader-content">Loading ~
+                <span id="loading-message">Code</span> ~
+                <span id="loading-percent"></span>
             </span>
-            <img class="spinner " src="static/img/spinner.svg ">
+            <img class="spinner" src="static/img/spinner.svg">
         </div>
     </div>
-    <script src="static/bundle20201224.js " type="413c4efd1cc530fd21a8c5b4-text/javascript "></script>
-    <script type="413c4efd1cc530fd21a8c5b4-text/javascript ">
+    <script src="static/bundle20201224.js" type="413c4efd1cc530fd21a8c5b4-text/javascript"></script>
+    <script type="413c4efd1cc530fd21a8c5b4-text/javascript">
         function webAudioCtxRusume() {
             Howler.ctx.resume().then(() => {
                 console.log('Playback resumed successfully');
@@ -492,15 +492,15 @@
             hideSteamOverlay();
         })
         // Inline mute controls
-        var muteOn = document.querySelector("#enable-audio ");
-        var muteOff = document.querySelector("#disable-audio ");
-        var className = "selected ";
-        muteOff.addEventListener("click ", function () {
+        var muteOn = document.querySelector("#enable-audio");
+        var muteOff = document.querySelector("#disable-audio");
+        var className = "selected";
+        muteOff.addEventListener("click", function () {
             Howler.mute(true);
             muteOff.classList.add(className);
             muteOn.classList.remove(className);
         });
-        muteOn.addEventListener("click ", function() {
+        muteOn.addEventListener("click", function() {
             webAudioCtxRusume();
             Howler.mute(false);
             muteOn.classList.add(className);
