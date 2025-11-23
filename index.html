@@ -486,7 +486,13 @@
                 return;
             }
 
-            var bridge = vkBridge.default;
+            // vkBridge is exposed as a global function in the browser build; the
+            // "default" property is not defined in that bundle, which led to
+            // bridge being undefined and calls like bridge.send throwing
+            // "Cannot read properties of undefined (reading 'send')" inside the
+            // VK iframe loader. Use the global object directly instead of
+            // expecting a "default" export.
+            var bridge = vkBridge;
 
             // Initialize VK Bridge
             bridge.send('VKWebAppInit')
