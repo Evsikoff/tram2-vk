@@ -474,8 +474,43 @@
             <img class="spinner" src="static/img/spinner.svg">
         </div>
     </div>
+    <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
     <script src="static/bundle20201224.js" type="text/javascript"></script>
     <script type="text/javascript">
+        // VK Bridge initialization
+        var bridge = vkBridge.default;
+
+        // Initialize VK Bridge
+        bridge.send('VKWebAppInit')
+            .then((data) => {
+                if (data.result) {
+                    // Приложение инициализировано
+                    console.log('VK Bridge initialized successfully');
+
+                    // Show banner ad after initialization
+                    bridge.send('VKWebAppShowBannerAd', {
+                        banner_location: 'top'
+                    })
+                    .then((data) => {
+                        if (data.result) {
+                            // Баннерная реклама отобразилась
+                            console.log('VK Banner ad shown successfully');
+                        }
+                    })
+                    .catch((error) => {
+                        // Ошибка
+                        console.log('VK Banner ad error:', error);
+                    });
+                } else {
+                    // Ошибка
+                    console.log('VK Bridge initialization failed');
+                }
+            })
+            .catch((error) => {
+                // Ошибка
+                console.log('VK Bridge error:', error);
+            });
+
         function webAudioCtxRusume() {
             Howler.ctx.resume().then(() => {
                 console.log('Playback resumed successfully');
