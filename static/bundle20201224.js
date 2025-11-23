@@ -455,7 +455,7 @@
                 $.isDown = !1, $.startPosition.distanceTo($.currentPosition) < .1 && Re()
             },
             ke = function() {
-                ee.remove(), L.text("world"), (0, h.default)("#loader-content").html("~ Enjoy your trip ~"), setTimeout(function() {
+                ee.remove(), L.text("world"), (0, h.default)("#loader-content").html("~ Насладитесь коротким путешествием ~"), setTimeout(function() {
                     (0, h.default)("#actions").addClass("active")
                 }, 3e3), le = new d.default.Clock(!0), le.start(), ue = new d.default.Scene, xe.scene = ue, Le("scene", ue), ue.fog = new d.default.Fog(16777215, 10, 11.1), he = new d.default.WebGLRenderer({
                     antialias: !0
