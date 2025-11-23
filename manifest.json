@@ -1,6 +1,6 @@
 {
-  "name": "Short Trip",
-  "short_name": "Short Trip",
+  "name": "Поэмаа о трамвае",
+  "short_name": "Поэмаа о трамвае",
   "description": "An hand-drawn, interactive illustration about a tram driver",
   "start_url": "/",
   "display": "standalone",
