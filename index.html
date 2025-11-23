@@ -533,10 +533,24 @@
             });
         }
         function hideSoundDialog() {
-            $('#sound-playback').fadeOut('fast');
+            var element = document.getElementById('sound-playback');
+            if (element) {
+                element.style.transition = 'opacity 0.2s ease';
+                element.style.opacity = '0';
+                setTimeout(function() {
+                    element.style.display = 'none';
+                }, 200);
+            }
         }
         function hideSteamOverlay() {
-            $('#steam-overlay').fadeOut('fast');
+            var element = document.getElementById('steam-overlay');
+            if (element) {
+                element.style.transition = 'opacity 0.2s ease';
+                element.style.opacity = '0';
+                setTimeout(function() {
+                    element.style.display = 'none';
+                }, 200);
+            }
         }
         // Chrome audio playback (see: https://goo.gl/7K7WLu)
         document.querySelector('#sound-playback > #resume-audio').addEventListener('click', function () {
