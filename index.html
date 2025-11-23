@@ -477,39 +477,55 @@
     <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
     <script src="static/bundle20201224.js" type="text/javascript"></script>
     <script type="text/javascript">
-        // VK Bridge initialization
-        var bridge = vkBridge.default;
+        // VK Bridge initialization - wait for the script to load
+        function initVKBridge() {
+            // Check if vkBridge is available
+            if (typeof vkBridge === 'undefined') {
+                console.log('VK Bridge not loaded yet, retrying...');
+                setTimeout(initVKBridge, 100);
+                return;
+            }
 
-        // Initialize VK Bridge
-        bridge.send('VKWebAppInit')
-            .then((data) => {
-                if (data.result) {
-                    // Приложение инициализировано
-                    console.log('VK Bridge initialized successfully');
+            var bridge = vkBridge.default;
 
-                    // Show banner ad after initialization
-                    bridge.send('VKWebAppShowBannerAd', {
-                        banner_location: 'top'
-                    })
-                    .then((data) => {
-                        if (data.result) {
-                            // Баннерная реклама отобразилась
-                            console.log('VK Banner ad shown successfully');
-                        }
-                    })
-                    .catch((error) => {
+            // Initialize VK Bridge
+            bridge.send('VKWebAppInit')
+                .then((data) => {
+                    if (data.result) {
+                        // Приложение инициализировано
+                        console.log('VK Bridge initialized successfully');
+
+                        // Show banner ad after initialization
+                        bridge.send('VKWebAppShowBannerAd', {
+                            banner_location: 'top'
+                        })
+                        .then((data) => {
+                            if (data.result) {
+                                // Баннерная реклама отобразилась
+                                console.log('VK Banner ad shown successfully');
+                            }
+                        })
+                        .catch((error) => {
+                            // Ошибка
+                            console.log('VK Banner ad error:', error);
+                        });
+                    } else {
                         // Ошибка
-                        console.log('VK Banner ad error:', error);
-                    });
-                } else {
+                        console.log('VK Bridge initialization failed');
+                    }
+                })
+                .catch((error) => {
                     // Ошибка
-                    console.log('VK Bridge initialization failed');
-                }
-            })
-            .catch((error) => {
-                // Ошибка
-                console.log('VK Bridge error:', error);
-            });
+                    console.log('VK Bridge error:', error);
+                });
+        }
+
+        // Start initialization when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initVKBridge);
+        } else {
+            initVKBridge();
+        }
 
         function webAudioCtxRusume() {
             Howler.ctx.resume().then(() => {
